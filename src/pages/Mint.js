@@ -14,13 +14,13 @@ const Page = () => {
 
     const { account, activate, active, library } = useWeb3React()
 
-    const contractAddress = "0x8dC09A15bCCB87A4D232E8aB227a56B223A747B6"
-    const developer = '0x575CBC1D88c266B18f1BB221C1a1a79A55A3d3BE'
+    const contractAddress = "0x11729D9EeC7186Ec6F4944ab72ef8EF65FF565ed"
+    // const developer = '0x575CBC1D88c266B18f1BB221C1a1a79A55A3d3BE'
     const mintPrice = 0.01;
     const [mintAmount, setMintAmount] = useState(1)
     const mintAmountDisplay = mintAmount < 10 ? `0${mintAmount}` : mintAmount;
 
-    const [mintTo, setMintTo] = useState(developer)
+    const [mintTo, setMintTo] = useState('got metamask?')
 
     const paste = () => {
         try {
@@ -40,18 +40,18 @@ const Page = () => {
     }
 
     let mintToValid;
-    if (!/^(0x)?[0-9a-f]{40}$/i.test(mintTo)) {
+    if (!/^(0x)?[0-9a-f]{40}|(.*).eth$/i.test(mintTo)) {
         mintToValid = false;
     } else {
         mintToValid = true;
     }
-    const mintButtonText = mintToValid ? 'Mint Now!' : 'wtf !'
+    const mintButtonText = mintToValid ? 'Mint Now!' : (<span>wtf<br/>!</span>)
 
     const handleMintTo = async () => {
         await connectToMetamask()
         const contract = new library.eth.Contract(TheGuySoftContractABI.abi, contractAddress)
         let res = await contract?.methods?.mintTo(mintTo, mintAmount)?.send({
-            from: mintTo,
+            from: account,
             value: library.utils.toWei(`${mintPrice * mintAmount}`)
         })
         console.log(res)
@@ -68,13 +68,13 @@ const Page = () => {
                 await injected.activate()
             }
             await activate(injected, undefined, true)
-            if (account) {
+            if (account && mintTo === '') {
                 setMintTo(account)
             }
         }
         catch (error) {
             console.log(error)
-            alert("please enable metamask")
+            alert("got metamask?")
             window.location.reload()
         }
     }
@@ -96,8 +96,14 @@ const Page = () => {
             }
             catch (error) {
                 console.log(error)
-                alert("please enable metamask")
-                window.location.reload()
+                if (window.innerWidth <= 992) {
+                    window.location.replace(`https://metamask.app.link/dapp/${window.location.href}`)
+                }
+                // alert("please enable metamask")
+                // if (window.innerWidth <= 992) {
+                //     window.location.replace(`https://metamask.app.link/dapp/${window.location.href}`)
+                // }
+                // window.location.reload()
             }
         })()
     }, [account, active, activate])
@@ -127,7 +133,10 @@ const Page = () => {
                         </Button>
                     </Container>
                 </div>
-                <Container isRounded title={`Send ${mintAmount} To`} className="mintTo">
+                <Container isRounded title={
+                    <input min={0} minLength={1} autoFocus={true} className="softsikInput" value={mintAmount} type="number" onChange={(e) => !isNaN(e?.target?.valueAsNumber) && setMintAmount(e?.target?.valueAsNumber)} />
+                }
+                    className="mintTo">
                     <input
                         type="text"
                         value={mintTo}
@@ -137,7 +146,7 @@ const Page = () => {
                         <Button className="mintToButton" onClick={() => paste()}>
                             ctrl+v
                         </Button>
-                        <Button className="mintToButton" onClick={() => setMintTo(account || developer)}>
+                        <Button className="mintToButton" onClick={() => setMintTo(account)}>
                             me
                         </Button>
                     </div>

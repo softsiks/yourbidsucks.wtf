@@ -301,7 +301,7 @@
     "absolutePath": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
     "exportedSymbols": {
       "IERC165": [
-        1752
+        1878
       ],
       "IERC721": [
         1077
@@ -329,7 +329,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 1078,
-        "sourceUnit": 1753,
+        "sourceUnit": 1879,
         "src": "58:47:3",
         "symbolAliases": [],
         "unitAlias": ""
@@ -342,7 +342,7 @@
               "id": 966,
               "name": "IERC165",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1752,
+              "referencedDeclaration": 1878,
               "src": "196:7:3"
             },
             "id": 967,
@@ -362,7 +362,7 @@
         "id": 1077,
         "linearizedBaseContracts": [
           1077,
-          1752
+          1878
         ],
         "name": "IERC721",
         "nameLocation": "185:7:3",
@@ -1645,7 +1645,7 @@
     "absolutePath": "@openzeppelin/contracts/token/ERC721/IERC721.sol",
     "exportedSymbols": {
       "IERC165": [
-        1752
+        1878
       ],
       "IERC721": [
         1077
@@ -1673,7 +1673,7 @@
         "nameLocation": "-1:-1:-1",
         "nodeType": "ImportDirective",
         "scope": 1078,
-        "sourceUnit": 1753,
+        "sourceUnit": 1879,
         "src": "58:47:3",
         "symbolAliases": [],
         "unitAlias": ""
@@ -1686,7 +1686,7 @@
               "id": 966,
               "name": "IERC165",
               "nodeType": "IdentifierPath",
-              "referencedDeclaration": 1752,
+              "referencedDeclaration": 1878,
               "src": "196:7:3"
             },
             "id": 967,
@@ -1706,7 +1706,7 @@
         "id": 1077,
         "linearizedBaseContracts": [
           1077,
-          1752
+          1878
         ],
         "name": "IERC721",
         "nameLocation": "185:7:3",
@@ -2990,8 +2990,8 @@
     "version": "0.8.7+commit.e28d00a7.Emscripten.clang"
   },
   "networks": {},
-  "schemaVersion": "3.4.2",
-  "updatedAt": "2021-08-12T13:52:45.496Z",
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-08-19T18:30:40.062Z",
   "devdoc": {
     "details": "Required interface of an ERC721 compliant contract.",
     "events": {

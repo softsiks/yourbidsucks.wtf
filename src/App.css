@@ -37,7 +37,7 @@
     overflow-x: hidden;
     position: absolute;
     top: 84%;
-    left: -45vw;
+    left: -40vw;
   }
   .setMintSign {
     padding: .7rem !important;
@@ -53,6 +53,9 @@
   }
   .softsik {
     height: 10rem !important
+  }
+  .softsikInput {
+    width: 3% !important
   }
   .mintTo {
     font-size: .5rem !important;
